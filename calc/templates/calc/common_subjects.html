@@ -15,14 +15,18 @@
     <table border="1">
       <tr>
         <th>科目名</th>
+        <th>単位数</th>
         <th>履修予定</th>
         <th>履修済</th>
       </tr>
+      {% for subject in subjects %}
       <tr>
-        <td>科目名</td>
+        <td>{{ subject.subject_name }}</td>
+        <td>{{ subject.n_credits }}</td>
         <td>{{ subject.doing }}</td>
         <td>{{ subject.done }}</td>
       </tr>
+      {% endfor %}
     </table>
     <input type="submit" value="送信">
   </form>
