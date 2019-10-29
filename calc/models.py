@@ -107,3 +107,41 @@ class Cource_Subject(models.Model):
 
     def __str__(self):
         return str(self.subject) + " " + str(self.cource)
+
+
+class User(models.Model):
+    class Meta:
+        verbose_name = 'ユーザ'
+        verbose_name_plural = 'ユーザ'
+
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+    )
+    cource = models.ForeignKey(
+        'Cource',
+        on_delete=models.SET_NULL,
+        null=True,
+    )
+    department = models.ForeignKey(
+        'Department',
+        on_delete=models.SET_NULL,
+        null=True,
+    )
+
+    def __str__(self):
+        return str(self.user)
+
+class Department(models.Model):
+    class Meta:
+        verbose_name = '学科'
+        verbose_name_plural = '学科'
+
+    department = models.CharField(
+        max_length=30,
+        default=None,
+        unique=True,
+    )
+
+    def __str__(self):
+        return self.department
