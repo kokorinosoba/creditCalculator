@@ -132,6 +132,7 @@ class User(models.Model):
     def __str__(self):
         return str(self.user)
 
+
 class Department(models.Model):
     class Meta:
         verbose_name = '学科'

@@ -1,4 +1,5 @@
 from django import forms
+from .models import Status
 
 
 class Credit(forms.Form):
@@ -17,3 +18,9 @@ class Credit(forms.Form):
             disabled=False,
             label='done',
         )
+
+
+class SampleForm(forms.ModelForm):
+    class Meta:
+        model = Status
+        exclude = ['user']

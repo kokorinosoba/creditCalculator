@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .forms import Credit
+from .forms import Credit, SampleForm
 
 
 def common_subjects(request):
@@ -13,4 +13,11 @@ def common_subjects(request):
         subjects.append(Credit(element[1], element[2]))
     return render(request, 'calc/common_subjects.html', {
         'subjects': subjects,
+    })
+
+
+def sample_form(request):
+    sample_form = SampleForm()
+    return render(request, 'calc/sample_form.html', {
+        'sample_form': sample_form,
     })
