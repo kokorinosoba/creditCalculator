@@ -1,5 +1,7 @@
 from django.shortcuts import render
+from django.views.generic import ListView
 from .forms import Credit, SampleForm
+from .models import Status
 
 
 def common_subjects(request):
@@ -16,8 +18,18 @@ def common_subjects(request):
     })
 
 
-def sample_form(request):
-    sample_form = SampleForm()
-    return render(request, 'calc/sample_form.html', {
-        'sample_form': sample_form,
-    })
+class Sample_Form(ListView):
+    model = Status
+    template_name = 'sample_form.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update({
+            'status_list': Status.objects.order_by('subject_id'),
+            'more_context': Status.objects.all(),
+        })
+        form_list = Status.objects.all()
+        return context
+
+    def get_queryset(self):
+        return Status.objects.all()
